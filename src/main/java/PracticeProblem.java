@@ -1,10 +1,11 @@
+import java.util.HashMap;
 public class PracticeProblem {
 
 	public static void main(String args[]) {
 		System.out.println(goodString("abcdfedree"));
 	}
 
-public static int goodString(String word){
+public static int goodString1(String word){
 int operatorCount = 0;
 int charIn1 = -1;
 int charIn2 = -1;
@@ -51,5 +52,30 @@ if (charIn1+word.length()-charIn2-1 < operatorCount){
 return operatorCount;
 }
 
+
+public static int goodString(String word){
+	HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+	int opCount = 100;
+for (int i = 0; i<word.length();i++){
+	System.out.println(word.charAt(i));
+	if (map.containsKey(word.charAt(i))){
+		System.out.println("it ran");
+		if (map.get(word.charAt(i)) + word.length() - i-1 < opCount){
+			System.out.println("it ran here");
+opCount = map.get(word.charAt(i)) + word.length() - i-1;
+	}}
+	else{
+	map.put(word.charAt(i), i);
+	}
+	
+}
+
+
+System.out.println(map);
+if (opCount ==100){
+	opCount = -1;
+}
+return opCount;
+}
 
 }
